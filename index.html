@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>音あり/なし切り替え</title>
+  <title>音あり/なし選択</title>
   <style>
     body {
       margin: 0;
@@ -39,14 +39,14 @@
 <body>
 
   <div id="choice">
-    <h2>どちらで再生しますか？</h2>
+    <h2>再生方法を選んでください</h2>
     <button onclick="playWithSound()">🔊 音ありで見る</button>
     <button onclick="playMuted()">🔇 音なしですぐ見る</button>
   </div>
 
   <video id="video" playsinline>
     <source src="video.mp4" type="video/mp4">
-    お使いのブラウザでは動画を再生できません。
+    お使いの端末では動画を再生できません。
   </video>
 
   <script>
@@ -58,7 +58,7 @@
       video.muted = false;
       video.controls = true;
       video.play().catch(err => {
-        alert("音あり再生はユーザー操作が必要です。もう一度お試しください。");
+        alert("音あり再生はユーザー操作が必要です。もう一度タップしてください。");
         console.error(err);
       });
     }
@@ -71,9 +71,8 @@
       video.play();
     }
 
-    // 動画が終わったらLINEに遷移（任意）
     video.addEventListener("ended", function () {
-      window.location.href = "https://line.me/ti/p/OO6ShwlrRb"; // ← ここを自分のLINE公式URLに変更
+      window.location.href = "https://line.me/ti/p/OO6ShwlrRb";
     });
   </script>
 
