@@ -56,7 +56,7 @@
     function playWithSound() {
       choice.style.display = "none";
       video.muted = false;
-      video.controls = true;
+      video.controls = false; // ← コントロールを表示しない！
       video.play().catch(err => {
         alert("音あり再生はユーザー操作が必要です。もう一度タップしてください。");
         console.error(err);
