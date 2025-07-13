@@ -2,35 +2,80 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>動画→Line</title>
+  <title>音あり/なし切り替え</title>
   <style>
-    body { margin: 0; 
-          background: black; 
-          display: flex; 
-          justify-content: center;
-          align-items: center;
-          height: 100vh; 
-         }
-    video { width: 100%; 
-           height: auto; 
-          }
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    #choice {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+    button {
+      margin: 10px;
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    video {
+      width: 100%;
+      height: auto;
+    }
   </style>
 </head>
 <body>
-    <video autoplay muted playsinline id="vid">
+
+  <div id="choice">
+    <h2>どちらで再生しますか？</h2>
+    <button onclick="playWithSound()">🔊 音ありで見る</button>
+    <button onclick="playMuted()">🔇 音なしですぐ見る</button>
+  </div>
+
+  <video id="video" playsinline>
     <source src="video.mp4" type="video/mp4">
     お使いのブラウザでは動画を再生できません。
   </video>
 
   <script>
-    // LINEに遷移するURL（公式アカウントIDなどに応じて変更）
-    const lineUrl = "https://line.me/ti/p/OO6ShwlrRb";
+    const video = document.getElementById("video");
+    const choice = document.getElementById("choice");
 
-    // 動画の再生終了イベントを検知してLINEに遷移
-    const video = document.getElementById("vid");
+    function playWithSound() {
+      choice.style.display = "none";
+      video.muted = false;
+      video.controls = true;
+      video.play().catch(err => {
+        alert("音あり再生はユーザー操作が必要です。もう一度お試しください。");
+        console.error(err);
+      });
+    }
+
+    function playMuted() {
+      choice.style.display = "none";
+      video.muted = true;
+      video.autoplay = true;
+      video.controls = false;
+      video.play();
+    }
+
+    // 動画が終わったらLINEに遷移（任意）
     video.addEventListener("ended", function () {
-      window.location.href = lineUrl;
+      window.location.href = "https://line.me/ti/p/OO6ShwlrRb"; // ← ここを自分のLINE公式URLに変更
     });
   </script>
+
 </body>
 </html>
