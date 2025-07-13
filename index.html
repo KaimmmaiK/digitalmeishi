@@ -23,11 +23,14 @@
   </video>
 
   <script>
+    // LINEに遷移するURL（公式アカウントIDなどに応じて変更）
+    const lineUrl = "https://line.me/ti/p/OO6ShwlrRb";
+
+    // 動画の再生終了イベントを検知してLINEに遷移
     const video = document.getElementById("vid");
-    video.onended = function() {
-      // LINE友だち追加の例
-      window.location.href = "https://line.me/ti/p/OO6ShwlrRb";
-    };
+    video.addEventListener("ended", function () {
+      window.location.href = lineUrl;
+    });
   </script>
 </body>
 </html>
