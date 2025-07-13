@@ -2,19 +2,25 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>動画テスト</title>
+  <title>動画→Line</title>
   <style>
-    body { margin: 0; background: black; display: flex; justify-content: center; align-items: center; height: 100vh; }
-    video { width: 100%; height: auto; }
+    body { margin: 0; 
+          background: black; 
+          display: flex; 
+          justify-content: center;
+          align-items: center;
+          height: 100vh; 
+         }
+    video { width: 100%; 
+           height: auto; 
+          }
   </style>
 </head>
 <body>
-  <video id="vid" autoplay muted playsinline>
+    <video autoplay muted playsinline id="vid">
     <source src="video.mp4" type="video/mp4">
     お使いのブラウザでは動画を再生できません。
   </video>
-</body>
-</html>
 
   <script>
     const video = document.getElementById("introVideo");
