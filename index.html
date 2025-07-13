@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>動画再生</title>
+  <title>動画再生後LINEへ</title>
 </head>
 <body>
-  <!-- 動画埋め込み -->
-  <video id="video" width="100%" controls>
-    <source src="動画URL" type="video/mp4">
-    お使いのブラウザでは動画を再生できません。
+  <video id="introVideo" width="100%" autoplay>
+    <source src="your-video.mp4" type="video/mp4">
+    動画を再生できません。
   </video>
 
   <script>
-    // 動画が終了した後にLINEの友達追加画面にリダイレクトする
-    document.getElementById('video').addEventListener('ended', function() {
-      window.location.href = "line://ti/p/@ユーザーID";  // LINE友達追加URL
-    });
+    const video = document.getElementById("introVideo");
+    video.onended = function() {
+      // LINE友だち追加の例
+      window.location.href = "https://line.me/R/ti/p/@yourlineid";
+    };
   </script>
 </body>
 </html>
